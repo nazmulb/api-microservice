@@ -1,0 +1,12 @@
+{
+  "development": {
+	"defaultDbDriver": "mysql",
+    "mongodb": "mongodb://localhost:27017/myapp",
+    "mysql": "mysql://root:@localhost/myapp2"
+  },
+  "production": {
+	"defaultDbDriver": "mysql",
+    "mongodb": "mongodb://localhost:27017/myapp",
+    "mysql": "mysql://root:@localhost/myapp2"
+  }
+}
