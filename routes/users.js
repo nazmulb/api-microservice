@@ -4,7 +4,7 @@ var express = require('express'),
 
 router.get('/', (req, res) => {
 	Users.getAllUsers().then( (users) => {
-		return JSON.stringify(users);
+		res.end("OK");
 		//res.render('users', { title: 'List Users', users: users, sessuser: req.user, messages: req.flash('userMsg') });
 	}, (e) => {
 		throw new Error("Error: " + e);
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 router.get('/view/:id', (req, res, next) => {
 	let id = parseInt(req.params.id);
 	Users.getUserById(id).then( (user) => {
-		return JSON.stringify(user);
+		res.end(JSON.stringify(user));
 		//res.render('view', { title: 'View User', user: user });
 	}, (e) => {
 		next(e);
@@ -24,7 +24,7 @@ router.get('/view/:id', (req, res, next) => {
 router.get('/edit/:id', (req, res, next) => {
 	let id = parseInt(req.params.id);
 	Users.getUserById(id).then( (user) => {
-		return JSON.stringify(user);
+		res.end(JSON.stringify(user));
 		//res.render('add', { title: 'Edit User', messages: req.flash('userAddMsg'), _id: id, user: user[0] });
 	}, (e) => {
 		next(e);
@@ -48,12 +48,12 @@ router.post('/add_update_user', (req, res) => {
 	if(opt == "insert"){
 		Users.getUserByUserName(req.body.username).then( (user) => {
 			if (Object.keys(user).length > 0) {
-				return JSON.stringify({msg: 'Username already exists. Try another one.'});
+				res.end(JSON.stringify({msg: 'Username already exists. Try another one.'}));
 				//req.flash('userAddMsg', 'Username already exists. Try another one.');
 				//res.redirect(redirectURL);
 			}else{
 				Users.insert(req.body).then( (results) => {
-					return JSON.stringify({msg: msg});
+					res.end(JSON.stringify({msg: msg}));
 					//req.flash('userMsg', msg);
 					//setTimeout( () => {res.redirect('/users')}, 500);
 				}, (e) => {
@@ -66,7 +66,7 @@ router.post('/add_update_user', (req, res) => {
 	}else{
 		delete req.body.username;
 		Users.update(req.body).then( (results) => {
-			return JSON.stringify({msg: msg});
+			res.end(JSON.stringify({msg: msg}));
 			//req.flash('userMsg', msg);
 			//setTimeout( () => {res.redirect('/users')}, 500);
 		}, (e) => {
@@ -78,7 +78,7 @@ router.post('/add_update_user', (req, res) => {
 router.delete('/:id', (req, res) => {
 	let id = parseInt(req.params.id);
 	Users.remove(id).then( (results) => {
-		return JSON.stringify({msg: 'Successfully removed user id: ' +id});
+		res.end(JSON.stringify({msg: 'Successfully removed user id: ' +id}));
 		//req.flash('userMsg', 'Successfully removed user id: ' +id);
 		//setTimeout( () => {res.redirect('/users')}, 500);
 	}, (e) => {
