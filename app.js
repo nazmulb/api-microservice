@@ -7,6 +7,10 @@ var app = express(),
 	users = require('./routes/users');
 
 app.use(logger('dev'));
+
+// Create application/x-www-form-urlencoded parser
+// This object will contain key-value pairs, where the value can be a string or array 
+// (when extended is false), or any type (when extended is true).
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', index);

@@ -26,9 +26,9 @@ router.post('/process_login', (req, res, next) => {
 	Users.getUserByUsernameAndPassword(username, password).then( (user) => {
 		if (Object.keys(user).length > 0) {
 			res.json(user);
+		}else{
+			res.json({msg: 'Incorrect username or password.'});
 		}
-		
-		return res.json({msg: 'Incorrect username or password.'});
 	}, (e) => {
 		next(e);
 	});	

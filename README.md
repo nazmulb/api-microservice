@@ -5,7 +5,7 @@ This is a microservice by using nodeJs, ExpressJs, ES6, Mongodb, MySql, etc
 You need `node v6.9.1` or more latest version to be installed for this project.
 You need to install mongodb & mysql and run both database server as well. 
 
-Create `myapp` database with `users` collection/table and add SID data for _id, username, password, profession
+Create `apimicro` database with `users` collection/table and add SID data for _id, username, password, profession
 
 ###### for mongodb after creating the users collection, please add the SID data:
 ```mongodb
@@ -20,7 +20,7 @@ Create `myapp` database with `users` collection/table and add SID data for _id, 
 ###### for mysql:
 
 ```
-CREATE DATABASE IF NOT EXISTS `myapp`
+CREATE DATABASE IF NOT EXISTS `apimicro`
 ```
 
 ```

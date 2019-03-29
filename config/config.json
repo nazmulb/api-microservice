@@ -1,12 +1,12 @@
 {
   "development": {
 	"defaultDbDriver": "mysql",
-    "mongodb": "mongodb://localhost:27017/myapp",
-    "mysql": "mysql://root:@localhost/myapp2"
+    "mongodb": "mongodb://localhost:27017/apimicro",
+    "mysql": "mysql://root:@localhost/apimicro"
   },
   "production": {
-	"defaultDbDriver": "mysql",
-    "mongodb": "mongodb://localhost:27017/myapp",
-    "mysql": "mysql://root:@localhost/myapp2"
+	"defaultDbDriver": "mongodb",
+    "mongodb": "mongodb://localhost:27017/apimicro",
+    "mysql": "mysql://root:@localhost/apimicro"
   }
 }
