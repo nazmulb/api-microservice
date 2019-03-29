@@ -1,5 +1,5 @@
 {
-  "name": "microservice",
+  "name": "api-microservice",
   "version": "1.0.0",
   "description": "Node Microservice",
   "private": true,

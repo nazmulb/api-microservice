@@ -1,4 +1,4 @@
-# Node Microservice
+# API Microservice
 This is a microservice by using nodeJs, ExpressJs, ES6, Mongodb, MySql, etc
 
 ## Setup
