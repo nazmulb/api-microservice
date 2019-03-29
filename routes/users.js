@@ -2,11 +2,11 @@ var express = require('express'),
 	router = express.Router(),
 	Users = require('../models/users');
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
 	Users.getAllUsers().then( (users) => {
 		res.json(users);
 	}, (e) => {
-		throw new Error("Error: " + e);
+		next(e);
 	});	
 });
 
@@ -19,9 +19,24 @@ router.get('/view/:id', (req, res, next) => {
 	});	
 });
 
-router.post('/add_update_user', (req, res) => {
+router.post('/process_login', (req, res, next) => {
+	let username = req.body.username,
+		password = req.body.password;
+
+	Users.getUserByUsernameAndPassword(username, password).then( (user) => {
+		if (Object.keys(user).length > 0) {
+			res.json(user);
+		}
+		
+		return res.json({msg: 'Incorrect username or password.'});
+	}, (e) => {
+		next(e);
+	});	
+});
+
+router.post('/add_update_user', (req, res, next) => {
 	let opt = "insert",
-		msg = "Successfully added",
+		msg = "Successfully added";
 	
 	if(req.body._id){ //update
 		opt = "update";
@@ -39,28 +54,28 @@ router.post('/add_update_user', (req, res) => {
 				Users.insert(req.body).then( (results) => {
 					res.json({msg: msg});
 				}, (e) => {
-					throw new Error("Error: " + e);
+					next(e);
 				});
 			}
 		}, (e) => {
-			throw new Error("Error: " + e);
+			next(e);
 		});
 	}else{
 		delete req.body.username;
 		Users.update(req.body).then( (results) => {
 			res.json({msg: msg});
 		}, (e) => {
-			throw new Error("Error: " + e);
+			next(e);
 		});
 	}
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res, next) => {
 	let id = parseInt(req.params.id);
 	Users.remove(id).then( (results) => {
 		res.json({msg: 'Successfully removed user id: ' +id});
 	}, (e) => {
-		throw new Error("Error: " + e);
+		next(e);
 	});	
 });
 
