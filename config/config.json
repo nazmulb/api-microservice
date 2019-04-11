@@ -2,7 +2,7 @@
   "development": {
 	"defaultDbDriver": "mysql",
     "mongodb": "mongodb://localhost:27017/apimicro",
-    "mysql": "mysql://root:@localhost/apimicro"
+    "mysql": "mysql://root:tiptop123@localhost/apimicro"
   },
   "production": {
 	"defaultDbDriver": "mongodb",
