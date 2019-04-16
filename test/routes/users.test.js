@@ -49,6 +49,7 @@ describe('User Routes', () => {
 
   test('Add Existing an User', async () => {
     const response = await rp.post(getUrl('/add_update_user'), getData());
+    
     expect(response.statusCode).toEqual(200);
     expect(typeof response.body).toBe('object');
     expect(response.body.msg).toBe("Username already exists. Try another one.");
@@ -66,8 +67,8 @@ describe('User Routes', () => {
 
   test('View Single User by id', async () => {
     const response = await rp.get(getUrl(`/view/${userId}`), commonOptions());
+    
     expect(response.statusCode).toEqual(200);
-  
     expect(response.body.length).not.toBe(0);
     expect(typeof response.body[0]).toBe('object');
     expect(response.body[0]).toMatchObject(USER_OBJECT);
@@ -75,8 +76,8 @@ describe('User Routes', () => {
 
   test('Update an User', async () => {
     const response = await rp.post(getUrl('/add_update_user'), getData({id: userId}));
+    
     expect(response.statusCode).toEqual(200);
-
     expect(typeof response.body).toBe('object');
     expect(response.body.msg).toBe("Successfully updated");
   });
