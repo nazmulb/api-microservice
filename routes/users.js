@@ -37,7 +37,6 @@ router.post('/process_login', (req, res, next) => {
 router.post('/add_update_user', (req, res, next) => {
 	let opt = "insert",
 		msg = "Successfully added";
-	
 	if(req.body._id){ //update
 		opt = "update";
 		msg = "Successfully updated";
