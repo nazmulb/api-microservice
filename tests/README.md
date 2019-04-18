@@ -42,5 +42,8 @@ Thst's simple, just hit the command
 ```sh
 npm test
 ```
-
+`coverage`
+```sh
+npm run test-coverage
+```
 
