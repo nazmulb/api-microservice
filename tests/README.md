@@ -37,3 +37,10 @@ In our test file we used `describe` and `test`, Jest puts each of these methods 
 - `test(name, fn, timeout)`: All you need in a test file is the test method which runs a test. It also under the alias: it(name, fn, timeout). 
 - there have lot more methods. Here is the [link](https://jestjs.io/docs/en/api)
 
+### Run your test
+Thst's simple, just hit the command
+```sh
+npm test
+```
+
+
