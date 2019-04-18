@@ -4,7 +4,8 @@
   "description": "Node Microservice",
   "private": true,
   "scripts": {
-    "test": "jest",
+    "test": "jest --config ./jest-config.js",
+    "test-coverage": "jest --config ./jest-config.js --coverage",
     "start": "./node_modules/.bin/nodemon ./bin/www"
   },
   "repository": {
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "jest": "^24.7.1",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "supertest": "^4.0.2"
   }
 }
