@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../../app');
 
-const BASE_URL = `http://localhost:${process.env.prort || 8082}`;
+const BASE_URL = `http://localhost:${process.env.port || 8082}`;
 const ROUTE_PATH = '/users';
 const USER_OBJECT =  expect.objectContaining({
   _id: expect.any(Number),
