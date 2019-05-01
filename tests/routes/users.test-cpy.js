@@ -61,6 +61,7 @@ describe('User Routes', () => {
     expect(response.statusCode).toEqual(200);
     expect(response.body.length).not.toBe(0);
     expect(typeof response.body[0]).toBe('object');
+
     expect(response.body[0]).toMatchObject(USER_OBJECT);
     userId = response.body[0]._id;
   });
