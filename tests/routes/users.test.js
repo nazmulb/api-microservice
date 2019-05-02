@@ -40,7 +40,7 @@ function getUrl(segment) {
 }
 
 expect.extend({
-  toBeValidResponseObject(response, statusCode, type, lengthNotBe) {
+  toBeResponseType(response, statusCode, type, lengthNotBe) {
     const isEqualStatusCode  = statusCode && response.statusCode == statusCode;
     const isEqualToLength  = lengthNotBe && response.body.length != lengthNotBe;
     const isEqualToType  = type && (isEqualToLength ? typeof response.body[0] == type : typeof response.body == type);
@@ -77,7 +77,7 @@ describe('User Routes', () => {
   test('Add New User', async (done) => {
     const response = await request(app).post(getUrl('/add_update_user')).send(getData());
 
-    expect(response.statusCode).toBeValidResponseObject(200, 'object');   
+    expect(response.statusCode).toBeResponseType(200, 'object');   
     expect(response.body.msg).toBe("Successfully added");
     done();
   });
@@ -85,7 +85,7 @@ describe('User Routes', () => {
   test('Add Existing an User', async (done) => {
     const response = await request(app).post(getUrl('/add_update_user')).send(getData());
     
-    expect(response.statusCode).toBeValidResponseObject(200, 'object');
+    expect(response.statusCode).toBeResponseType(200, 'object');
     expect(response.body.msg).toBe("Username already exists. Try another one.");
     done();
   });
@@ -93,7 +93,7 @@ describe('User Routes', () => {
   test('List of user', async (done) => {
     const response = await request(app).get(getUrl('/')).send(commonOptions());
 
-    expect(response.statusCode).toBeValidResponseObject(200, 'object', 0);
+    expect(response.statusCode).toBeResponseType(200, 'object', 0);
     expect(response.body[0]).toMatchObject(USER_OBJECT);
     userId = response.body[0]._id;
     done();
@@ -102,7 +102,7 @@ describe('User Routes', () => {
   test('View Single User by id', async (done) => {
     const response = await request(app).get(getUrl(`/view/${userId}`)).send(commonOptions());
     
-    expect(response.statusCode).toBeValidResponseObject(200, 'object', 0);
+    expect(response.statusCode).toBeResponseType(200, 'object', 0);
     expect(response.body[0]).toMatchObject(USER_OBJECT);
     done();
   });
@@ -110,7 +110,7 @@ describe('User Routes', () => {
   test('Update an User', async (done) => {
     const response = await request(app).post(getUrl('/add_update_user')).send(getData({id: userId}));
     
-    expect(response.statusCode).toBeValidResponseObject(200, 'object');
+    expect(response.statusCode).toBeResponseType(200, 'object');
     expect(response.body.msg).toBe("Successfully updated");
     done();
   });
@@ -122,7 +122,7 @@ describe('User Routes', () => {
       id: userId
     }});
     
-    expect(response.statusCode).toBeValidResponseObject(200, 'object');
+    expect(response.statusCode).toBeResponseType(200, 'object');
     expect(response.body.msg).toBe(`Successfully removed user id: ${userId}`);
     done();
   });
